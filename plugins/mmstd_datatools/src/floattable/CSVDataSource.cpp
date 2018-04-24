@@ -320,12 +320,9 @@ void datatools::floattable::CSVDataSource::assertData(void) {
                     ++end;
                 }
 
-                char *ez = const_cast<char*>(end - colSepEnd);
-                ez = '\0';
-
                 if (this->columns[col].Type() == CallFloatTableData::ColumnType::QUANTITATIVE) {
 					if (decType == DecimalSeparator::DE) {
-						for (ez = const_cast<char*>(start); ez != end; ++ez) if (*ez == ',') *ez = '.';
+						for (char* ez = const_cast<char*>(start); ez != end; ++ez) if (*ez == ',') *ez = '.';
 					}
 					double value = parseValue(start, end);
 					values[static_cast<size_t>(idx * colCnt + col)] = static_cast<float>(value);
